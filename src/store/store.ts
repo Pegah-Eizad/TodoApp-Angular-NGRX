@@ -5,7 +5,7 @@ export class Store {
 
     constructor(reducers = {}, initialState= {}) {
         this.reducers = reducers; //initialize reducers
-        this.state = initialState; //initialize state
+        this.state = this.reduce(initialState, {}); //overwerite the initialState
     }
 
     //using TS 'get' property
@@ -19,6 +19,9 @@ export class Store {
 
     private reduce (state, action) {
        const newState = {};
+       //loop over all reducers, create a new obj prop for each, 
+       //bind value as the result of each reducer's fn call 
+       //each reducer will manage its own piece of state 
        for (const prop in this.reducers) {
            //newState.todos = this.reducers.todos()
            newState[prop] = this.reducers[prop](state[prop], action);
