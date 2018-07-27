@@ -4,8 +4,8 @@ export class Store {
     private state: { [key: string]: any};
 
     constructor(reducers = {}, initialState= {}) {
-        //initialize state
-        this.state = initialState;
+        this.reducers = reducers; //initialize reducers
+        this.state = initialState; //initialize state
     }
 
     //using TS 'get' property
@@ -13,10 +13,16 @@ export class Store {
         return this.state;
     }
 
-    dispatch(action){
-        this.state = {
-            ...this.state,
-            todos: [...this.state.todos, action.payload]
-        };
+    dispatch(action) {
+        this.state = this.reduce(this.state, action);
+    }
+
+    private reduce (state, action) {
+       const newState = {};
+       for (const prop in this.reducers) {
+           //newState.todos = this.reducers.todos()
+           newState[prop] = this.reducers[prop](state[prop], action);
+       }
+       return newState;
     }
 }
