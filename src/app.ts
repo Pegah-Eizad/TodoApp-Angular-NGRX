@@ -34,11 +34,11 @@ button.addEventListener(
 );
 
 //console.log('David was here!!');
-store.subscribe(state => {
+const unsubscribe = store.subscribe(state => {
   renderTodos(state.todos.data);
 });
 
-//destroy.addEventListener('click', unsubscribe, false);
+destroy.addEventListener('click', unsubscribe, false);
 
 todoList.addEventListener('click', function(event) {
   const target = event.target as HTMLButtonElement;

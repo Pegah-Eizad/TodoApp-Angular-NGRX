@@ -19,6 +19,9 @@ export class Store {
         console.log('Inside subscribe in the Store file!!');
         this.subscribers = [...this.subscribers, fn];
         this.notify();
+        return () => {
+            this.subscribers = this.subscribers.filter(sub => sub !== fn)
+        }
     }
 
     dispatch(action) {
