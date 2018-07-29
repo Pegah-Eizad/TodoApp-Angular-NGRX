@@ -23,7 +23,7 @@ button.addEventListener(
 
     console.log(payload);
     store.dispatch({
-      type: 'ADD_TODO',
+      type: fromStore.ADD_TODO,
       payload    
     })
     //test
