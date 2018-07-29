@@ -33,6 +33,13 @@ button.addEventListener(
   false
 );
 
+//console.log('David was here!!');
+store.subscribe(state => {
+  renderTodos(state.todos.data);
+});
+
+//destroy.addEventListener('click', unsubscribe, false);
+
 todoList.addEventListener('click', function(event) {
   const target = event.target as HTMLButtonElement;
   if (target.nodeName.toLowerCase() === 'button') {
@@ -40,4 +47,4 @@ todoList.addEventListener('click', function(event) {
   }
 });
 
-store.subscribe(state => console);
+store.subscribe(state => console.log('STATE::', state));

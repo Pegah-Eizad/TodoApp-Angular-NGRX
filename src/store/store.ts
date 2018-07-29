@@ -1,3 +1,4 @@
+import { renderTodos } from '../utils';
 export class Store {
     private subscribers: Function[]; //function array
     private reducers: { [key: string]: Function};
@@ -15,13 +16,14 @@ export class Store {
     }
 
     subscribe(fn) {
+        console.log('Inside subscribe in the Store file!!');
         this.subscribers = [...this.subscribers, fn];
-        this.notify;
+        this.notify();
     }
 
     dispatch(action) {
         this.state = this.reduce(this.state, action);
-        this.notify;
+        this.notify();
     }
 
     notify() {
