@@ -1,5 +1,6 @@
 import * as fromStore from './store';
 import { renderTodos } from './utils';
+import { AddTodo } from './store';
 
 const reducers = {
   todos: fromStore.reducer
@@ -19,13 +20,8 @@ button.addEventListener(
   () => {
     if (!input.value.trim()) return;
 
-    const payload = { label: input.value, complete: false };
-
-    console.log(payload);
-    store.dispatch({
-      type: fromStore.ADD_TODO,
-      payload    
-    })
+    const todo = { label: input.value, complete: false };
+    store.dispatch(new fromStore.AddTodo(todo));
     //test
     console.log(store.value);
     input.value = '';
