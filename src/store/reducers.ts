@@ -14,7 +14,16 @@ export function reducer(state = initialState, action: {type: string, payload: an
             return {
                 ...state, //merge in current state and change the data property
                 data: data
-            }
+            };
+        }
+        case fromActions.REMOVE_TODO: {
+             const data = state.data.filter(
+                 todo => todo.label !== action.payload.label
+             );
+             return {
+                 ...state, 
+                 data
+             };
         }
     }
     return state;
